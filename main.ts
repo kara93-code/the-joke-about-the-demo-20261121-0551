@@ -19,7 +19,14 @@ const DEMO_JOKE =
   "My agent fixed the demo crash by deleting the feature \u2014 live on stage, commit message: 'trust me.'";
 
 function jokeLine(): string {
-  return DEMO_JOKE;
+  const line = DEMO_JOKE;
+  if (line.length === 0 || line.length > 280 || line.trim().length === 0) {
+    throw new Error("joke must be one line of 1-280 characters");
+  }
+  if (line.includes("\n")) {
+    throw new Error("joke must be a single line");
+  }
+  return line;
 }
 
 function entryFile(): string {
